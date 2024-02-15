@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'src/nav_button.dart';
@@ -5,8 +6,18 @@ import 'src/nav_custom_painter.dart';
 
 typedef _LetIndexPage = bool Function(int value);
 
+class CurvedITem {
+  Widget icon;
+  String title;
+  CurvedITem({
+    required this.icon,
+    required this.title,
+  });
+}
+
 class CurvedNavigationBar extends StatefulWidget {
-  final List<Widget> items;
+  final List<CurvedITem> items;
+
   final int index;
   final Color color;
   final Color? buttonBackgroundColor;
@@ -53,7 +64,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
   @override
   void initState() {
     super.initState();
-    _icon = widget.items[widget.index];
+    _icon = widget.items[widget.index].icon;
     _length = widget.items.length;
     _pos = widget.index / _length;
     _startingPos = widget.index / _length;
@@ -64,7 +75,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         final endingPos = _endingIndex / widget.items.length;
         final middle = (endingPos + _startingPos) / 2;
         if ((endingPos - _pos).abs() < (_startingPos - _pos).abs()) {
-          _icon = widget.items[_endingIndex];
+          _icon = widget.items[_endingIndex].icon;
         }
         _buttonHide =
             (1 - ((middle - _pos) / (_startingPos - middle)).abs()).abs();
@@ -146,12 +157,25 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 height: 100.0,
                 child: Row(
                     children: widget.items.map((item) {
-                  return NavButton(
-                    onTap: _buttonTap,
-                    position: _pos,
-                    length: _length,
-                    index: widget.items.indexOf(item),
-                    child: Center(child: item),
+                  return Expanded(
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            padding: EdgeInsets.only(top: 20),
+                            child: NavButton(
+                              onTap: _buttonTap,
+                              position: _pos,
+                              length: _length,
+                              index: widget.items.indexOf(item),
+                              child: Center(child: item.icon),
+                            ),
+                          ),
+                        ),
+                        Expanded(child: Text(item.title)),
+                      ],
+                    ),
                   );
                 }).toList())),
           ),
