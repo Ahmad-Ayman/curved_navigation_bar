@@ -139,10 +139,10 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                         BlendMode.srcIn,
                       ),
                       child: SizedBox(
-                        height: widget.height * 0.7,
-                        width: widget.height * 0.7,
+                        height: widget.height * 0.8,
+                        width: widget.height * 0.8,
                         child: Padding(
-                          padding: EdgeInsets.all(8),
+                          padding: EdgeInsets.all(4),
                           child: _icon,
                         ),
                       ),
