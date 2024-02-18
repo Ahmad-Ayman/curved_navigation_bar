@@ -45,7 +45,6 @@ class CurvedNavigationBar extends StatefulWidget {
         assert(items != null),
         assert(items.length >= 1),
         assert(0 <= index && index < items.length),
-        assert(0 <= height && height <= 75.0),
         super(key: key);
 
   @override
@@ -113,7 +112,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         alignment: Alignment.bottomCenter,
         children: <Widget>[
           Positioned(
-            bottom: -40 - (75.0 - widget.height),
+            bottom: widget.height * 0.2,
             left: Directionality.of(context) == TextDirection.rtl
                 ? null
                 : _pos * size.width,
@@ -136,8 +135,8 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                       BlendMode.srcIn,
                     ),
                     child: SizedBox(
-                      height: widget.height / 1.4,
-                      width: widget.height / 1.4,
+                      height: widget.height * 0.7,
+                      width: widget.height * 0.7,
                       child: _icon,
                     ),
                   ),
@@ -148,21 +147,21 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
           Positioned(
             left: 0,
             right: 0,
-            bottom: 0 - (75.0 - widget.height),
+            bottom: 0,
             child: CustomPaint(
               painter: NavCustomPainter(
                   _pos, _length, widget.color, Directionality.of(context)),
               child: Container(
-                height: 75.0,
+                height: widget.height,
               ),
             ),
           ),
           Positioned(
             left: 0,
             right: 0,
-            bottom: 0 - (75.0 - widget.height),
+            bottom: 0,
             child: SizedBox(
-                height: 100.0,
+                height: widget.height * 1.25,
                 child: Row(
                     children: widget.items.map((item) {
                   return Expanded(
