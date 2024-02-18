@@ -112,7 +112,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         alignment: Alignment.bottomCenter,
         children: <Widget>[
           Positioned(
-            bottom: widget.height * 0.2,
+            // top: widget.height * 0.45,
             left: Directionality.of(context) == TextDirection.rtl
                 ? null
                 : _pos * size.width,
@@ -120,24 +120,32 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 ? _pos * size.width
                 : null,
             width: size.width / _length,
-            child: Center(
-              child: Transform.translate(
-                offset: Offset(
-                  0,
-                  -(1 - _buttonHide) * 80,
-                ),
-                child: Material(
-                  color: widget.buttonBackgroundColor ?? widget.color,
-                  type: MaterialType.circle,
-                  child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                      widget.color, // Use the parent widget's color
-                      BlendMode.srcIn,
-                    ),
-                    child: SizedBox(
-                      height: widget.height * 0.7,
-                      width: widget.height * 0.7,
-                      child: _icon,
+            height: widget.height,
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: Center(
+                child: Transform.translate(
+                  offset: Offset(
+                    0,
+                    -(1 - _buttonHide) * widget.height / 2.5,
+                  ),
+                  child: Material(
+                    color: widget.buttonBackgroundColor ?? widget.color,
+                    type: MaterialType.circle,
+                    child: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                        widget.color, // Use the parent widget's color
+                        BlendMode.srcIn,
+                      ),
+                      child: SizedBox(
+                        height: widget.height * 0.7,
+                        width: widget.height * 0.7,
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: _icon,
+                        ),
+                      ),
                     ),
                   ),
                 ),

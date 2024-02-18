@@ -18,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
           index: 0,
-          height: 200,
+          height: 80,
           items: [
             CurvedITem(icon: Icon(Icons.add, size: 30), title: "title"),
             CurvedITem(icon: Icon(Icons.add, size: 30), title: "title"),
