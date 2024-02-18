@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:meta/meta.dart';
 import 'src/nav_button.dart';
 import 'src/nav_custom_painter.dart';
 
@@ -129,9 +130,16 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 child: Material(
                   color: widget.buttonBackgroundColor ?? widget.color,
                   type: MaterialType.circle,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _icon,
+                  child: ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      widget.color, // Use the parent widget's color
+                      BlendMode.srcIn,
+                    ),
+                    child: SizedBox(
+                      height: widget.height / 1.4,
+                      width: widget.height / 1.4,
+                      child: _icon,
+                    ),
                   ),
                 ),
               ),
