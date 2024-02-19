@@ -187,7 +187,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
               Expanded(
                 flex: 3,
                 child: Container(
-                  padding: EdgeInsets.only(top: widget.height * 0.1),
+                  margin: EdgeInsets.only(top: widget.height * 0.4),
                   child: NavButton(
                     onTap: _buttonTap,
                     position: _pos,
