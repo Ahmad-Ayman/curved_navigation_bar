@@ -9,7 +9,7 @@ typedef _LetIndexPage = bool Function(int value);
 
 class CurvedITem {
   Widget icon;
-  Widget title;
+  Text title;
   CurvedITem({
     required this.icon,
     required this.title,
@@ -168,34 +168,49 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
             right: 0,
             bottom: 0,
             child: SizedBox(
-                height: widget.height * 1.25,
-                child: Row(
-                    children: widget.items.map((item) {
-                  return Expanded(
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            padding: EdgeInsets.only(top: 20),
-                            child: NavButton(
-                              onTap: _buttonTap,
-                              position: _pos,
-                              length: _length,
-                              index: widget.items.indexOf(item),
-                              child: Center(child: item.icon),
-                            ),
-                          ),
-                        ),
-                        Expanded(child: item.title),
-                      ],
-                    ),
-                  );
-                }).toList())),
+              height: widget.height * 1.25,
+              child: Row(children: [...createIconsListBuilder()]),
+            ),
           ),
         ],
       ),
     );
+  }
+
+  List<Widget> createIconsListBuilder() {
+    List<Widget> children = [];
+    for (int index = 0; index < widget.items.length; index++) {
+      children.add(
+        Expanded(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  padding: EdgeInsets.only(top: widget.height * 0.1),
+                  child: NavButton(
+                    onTap: _buttonTap,
+                    position: _pos,
+                    length: _length,
+                    index: index,
+                    child: Center(child: widget.items[index].icon),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  widget.items[index].title.data ?? "",
+                  style: widget.items[index].title.style?.copyWith(
+                    color: _endingIndex == index ? Color(0xff84B230) : null,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    }
+    return children;
   }
 
   void setPage(int index) {
