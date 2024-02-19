@@ -9,7 +9,7 @@ typedef _LetIndexPage = bool Function(int value);
 
 class CurvedITem {
   Widget icon;
-  String title;
+  Widget title;
   CurvedITem({
     required this.icon,
     required this.title,
@@ -187,7 +187,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                             ),
                           ),
                         ),
-                        Expanded(child: Text(item.title)),
+                        Expanded(child: item.title),
                       ],
                     ),
                   );
