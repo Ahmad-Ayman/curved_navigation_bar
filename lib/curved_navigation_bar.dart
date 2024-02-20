@@ -53,6 +53,7 @@ class CurvedNavigationBar extends StatefulWidget {
 
 class CurvedNavigationBarState extends State<CurvedNavigationBar>
     with SingleTickerProviderStateMixin {
+  late int selectedIndexForTextStyle;
   late double _startingPos;
   int _endingIndex = 0;
   late double _pos;
@@ -64,6 +65,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
   @override
   void initState() {
     super.initState();
+    selectedIndexForTextStyle = widget.index;
     _icon = widget.items[widget.index].icon;
     _length = widget.items.length;
     _pos = widget.index / _length;
@@ -79,6 +81,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         }
         _buttonHide =
             (1 - ((middle - _pos) / (_startingPos - middle)).abs()).abs();
+        selectedIndexForTextStyle = _endingIndex;
       });
     });
   }
@@ -201,7 +204,9 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 child: Text(
                   widget.items[index].title.data ?? "",
                   style: widget.items[index].title.style?.copyWith(
-                    color: _endingIndex == index ? Color(0xff84B230) : null,
+                    color: selectedIndexForTextStyle == index
+                        ? widget.buttonBackgroundColor
+                        : null,
                   ),
                 ),
               )
