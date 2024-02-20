@@ -21,31 +21,36 @@ class _BottomNavBarState extends State<BottomNavBar> {
           height: 80,
           items: [
             CurvedITem(
-                icon: Icon(Icons.add, size: 30),
+                selectedIcon: Icon(Icons.abc_sharp, size: 30),
+                unselectedIcon: Icon(Icons.add, size: 30),
                 title: Text(
                   "title",
                   style: TextStyle(color: Colors.blue),
                 )),
             CurvedITem(
-                icon: Icon(Icons.add, size: 30),
+                selectedIcon: Icon(Icons.abc_sharp, size: 30),
+                unselectedIcon: Icon(Icons.add, size: 30),
                 title: Text(
                   "title",
                   style: TextStyle(color: Colors.blue),
                 )),
             CurvedITem(
-                icon: Icon(Icons.add, size: 30),
+                selectedIcon: Icon(Icons.abc_sharp, size: 30),
+                unselectedIcon: Icon(Icons.add, size: 30),
                 title: Text(
                   "title",
                   style: TextStyle(color: Colors.blue),
                 )),
             CurvedITem(
-                icon: Icon(Icons.add, size: 30),
+                selectedIcon: Icon(Icons.abc_sharp, size: 30),
+                unselectedIcon: Icon(Icons.add, size: 30),
                 title: Text(
                   "title",
                   style: TextStyle(color: Colors.blue),
                 )),
             CurvedITem(
-                icon: Icon(Icons.add, size: 30),
+                selectedIcon: Icon(Icons.abc_sharp, size: 30),
+                unselectedIcon: Icon(Icons.add, size: 30),
                 title: Text(
                   "title",
                   style: TextStyle(color: Colors.blue),

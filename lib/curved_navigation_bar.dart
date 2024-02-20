@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:meta/meta.dart';
 import 'src/nav_button.dart';
 import 'src/nav_custom_painter.dart';
@@ -8,10 +7,12 @@ import 'src/nav_custom_painter.dart';
 typedef _LetIndexPage = bool Function(int value);
 
 class CurvedITem {
-  Widget icon;
+  Widget unselectedIcon;
+  Widget selectedIcon;
   Text title;
   CurvedITem({
-    required this.icon,
+    required this.unselectedIcon,
+    required this.selectedIcon,
     required this.title,
   });
 }
@@ -66,7 +67,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
   void initState() {
     super.initState();
     selectedIndexForTextStyle = widget.index;
-    _icon = widget.items[widget.index].icon;
+    _icon = widget.items[widget.index].selectedIcon;
     _length = widget.items.length;
     _pos = widget.index / _length;
     _startingPos = widget.index / _length;
@@ -77,7 +78,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         final endingPos = _endingIndex / widget.items.length;
         final middle = (endingPos + _startingPos) / 2;
         if ((endingPos - _pos).abs() < (_startingPos - _pos).abs()) {
-          _icon = widget.items[_endingIndex].icon;
+          _icon = widget.items[_endingIndex].selectedIcon;
         }
         _buttonHide =
             (1 - ((middle - _pos) / (_startingPos - middle)).abs()).abs();
@@ -196,7 +197,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                     position: _pos,
                     length: _length,
                     index: index,
-                    child: Center(child: widget.items[index].icon),
+                    child: Center(child: widget.items[index].unselectedIcon),
                   ),
                 ),
               ),
